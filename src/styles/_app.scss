@@ -1,0 +1,33 @@
+.app {
+  width: 100%;
+  padding: 50px 0 100px;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px 50px;
+
+    &-logo {
+      width: 80px;
+    }
+  }
+
+  &__body {
+    display: flex;
+    max-width: 860px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__content{
+    flex-grow: 1;
+  }
+
+  &__sidebar{
+    width: 250px;
+    padding-right: 20px;
+    flex-shrink: 0;
+  }
+}

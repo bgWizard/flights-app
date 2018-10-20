@@ -1,0 +1,46 @@
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html{
+  font-size: 62.5%;
+  font-family: $primary-font;
+  font-weight: 400;
+  height: 100%;
+}
+
+body {
+  color: $color-text;
+  @include font-smoothing;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #F3F7FA;
+}
+
+p,h1,h2,h3,h4,ul{
+  margin: 0;
+}
+
+ul{
+  padding: 0;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+a{
+  &:focus{
+    box-shadow: 0 0 0 0.4rem rgba(24,144,255,.2);
+  }
+}

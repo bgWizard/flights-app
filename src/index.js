@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store';
-import App from './components/App';
+import App from './containers/App';
 
 import './styles/index.scss';
 
@@ -20,8 +20,8 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    const NextApp = require('./components/App').default;
+  module.hot.accept('./containers/App', () => {
+    const NextApp = require('./containers/App').default;
     render(NextApp);
   });
 }
