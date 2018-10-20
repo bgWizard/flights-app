@@ -1,26 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import './TilesList.scss';
 
-function TilesList({mixClass = '', items, ItemComponent}) {
+const TilesList = ({
+  className,
+  items,
+  ItemComponent,
+}) => {
+  const tilesListClasses = classNames(className, {
+    'tiles-list': true,
+  });
+
   return (
-    <ul className={`tiles-list ${mixClass}`}>
+    <ul className={tilesListClasses}>
       {items.map((item, index) => (
         <li className="tiles-list__item">
           <ItemComponent
             key={index}
-            item={item}/>
+            data={item}/>
         </li>
       ))}
     </ul>
   );
-}
+};
 
 TilesList.propTypes = {
   items: PropTypes.array.isRequired,
   ItemComponent: PropTypes.element.isRequired,
-  mixClass: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default TilesList;

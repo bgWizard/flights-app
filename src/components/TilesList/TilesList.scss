@@ -1,7 +1,9 @@
 @import "../../styles/helpers/index";
 
 .tiles-list {
-  &__item{
+  &__item {
+    list-style: none;
+
     &:not(:first-child) {
       margin-top: 20px;
     }

@@ -5,13 +5,13 @@ import Tile from '../Tile';
 
 import './Filters.scss';
 
-function Filters() {
+const Filters = () => {
   return (
-    <Tile mixClass="filters">
+    <Tile className="filters">
       Filters
     </Tile>
   );
-}
+};
 
 Filters.propTypes = {
 };
