@@ -24,9 +24,13 @@ class TicketsListContainer extends Component {
             Loading...
           </p>}
         {isLoaded && tickets.length > 0 &&
-          <TilesList
-            items={tickets}
-            ItemComponent={Ticket}/>}
+          <TilesList>
+            {tickets.map((ticket, index) => (
+              <Ticket
+                key={index}
+                data={ticket}/>
+            ))}
+          </TilesList>}
       </Fragment>
     );
   }

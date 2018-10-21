@@ -6,8 +6,7 @@ import './TilesList.scss';
 
 const TilesList = ({
   className,
-  items,
-  ItemComponent,
+  children,
 }) => {
   const tilesListClasses = classNames(className, {
     'tiles-list': true,
@@ -15,13 +14,11 @@ const TilesList = ({
 
   return (
     <ul className={tilesListClasses}>
-      {items.map((item, index) => (
+      {React.Children.map(children, (child, index) => (
         <li
           key={index}
           className="tiles-list__item">
-          <ItemComponent
-            key={index}
-            data={item}/>
+          {child}
         </li>
       ))}
     </ul>
@@ -29,12 +26,7 @@ const TilesList = ({
 };
 
 TilesList.propTypes = {
-  items: PropTypes.array.isRequired,
-  ItemComponent: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.func,
-  ]).isRequired,
-  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default TilesList;

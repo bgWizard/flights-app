@@ -5,15 +5,21 @@ import Tile from '../Tile';
 
 import './Filters.scss';
 
-const Filters = () => {
+const Filters = ({children}) => {
   return (
     <Tile className="filters">
-      Filters
+      {React.Children.map(children, (child, index) => (
+        React.cloneElement(child, {
+          key: index,
+          className: 'filters__item',
+        })
+      ))}
     </Tile>
   );
 };
 
 Filters.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Filters;
