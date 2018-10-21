@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import turkishAirlinesLogo from '../../static/turkish-airlines-logo.png';
+import turkishAirlinesLogo2x from '../../static/turkish-airlines-logo@2x.png';
 
 import Tile from '../Tile';
 import Button from '../Button';
@@ -16,12 +18,15 @@ const Ticket = ({
     <Tile className="ticket">
       <div className="ticket__col-cta">
         <div className="ticket__company-logo">
-          <img src="#src" alt="alt"/>
+          <img
+            srcSet={`${turkishAirlinesLogo2x} 2x`}
+            src={turkishAirlinesLogo}
+            alt="Turkish Airlines"/>
         </div>
         <Button
           className="ticket__btn-buy"
           classMod="primary">
-          Buy for ${price}
+          Купить<br/>за ${price}
         </Button>
       </div>
       <div className="ticket__col-info">

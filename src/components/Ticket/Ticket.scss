@@ -3,7 +3,36 @@
 .ticket {
   $verticalPadding: 25px;
 
+  display: flex;
   padding: $verticalPadding 20px;
 
+  &__col-cta {
+    position: relative;
+    flex-shrink: 0;
+    width: 180px;
+    padding-right: 20px;
 
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -$verticalPadding;
+      bottom: -$verticalPadding;
+      border-left: 1px solid $color-grey--light;
+    }
+  }
+
+  &__col-info {
+    flex-grow: 1;
+    padding-left: 25px;
+  }
+
+  &__company-logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__btn-buy {
+    width: 100%;
+  }
 }

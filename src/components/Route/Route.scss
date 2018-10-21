@@ -1,5 +1,85 @@
 @import "../../styles/helpers/index";
 
 .route {
+  &__top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
 
+  &__bottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  &__origin {
+    padding-right: 20px;
+    text-align: left;
+  }
+
+  &__destination {
+    padding-left: 20px;
+    text-align: right;
+  }
+
+  &__path {
+    flex-grow: 1;
+
+    &-text {
+      text-align: center;
+      color: $color-text--secondary;
+    }
+
+    &-line {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      padding: 1px 0;
+
+      &::before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        border-top: 1px solid $color-grey;
+      }
+    }
+
+    &-plane {
+      display: inline-block;
+      padding-left: 1px;
+      background-color: #fff;
+      z-index: 1;
+
+      &-icon{
+        width: 13px;
+        height: 14px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__time {
+    font-size: 3.2rem;
+    line-height: 0.9em;
+    flex-shrink: 0;
+  }
+
+  &__address,
+  &__date {
+    font-size: 1.2rem;
+    line-height: 1.5em;
+  }
+
+  &__address {
+    font-weight: 600;
+  }
+
+  &__date {
+    color: $color-text--secondary;
+  }
 }

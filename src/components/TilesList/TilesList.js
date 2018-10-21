@@ -16,7 +16,9 @@ const TilesList = ({
   return (
     <ul className={tilesListClasses}>
       {items.map((item, index) => (
-        <li className="tiles-list__item">
+        <li
+          key={index}
+          className="tiles-list__item">
           <ItemComponent
             key={index}
             data={item}/>
@@ -28,7 +30,10 @@ const TilesList = ({
 
 TilesList.propTypes = {
   items: PropTypes.array.isRequired,
-  ItemComponent: PropTypes.element.isRequired,
+  ItemComponent: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ]).isRequired,
   className: PropTypes.string,
 };
 
