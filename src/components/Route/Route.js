@@ -38,9 +38,9 @@ const Route = ({
   };
 
   const renderRouteTime = (time) => (
-    <p className="route__time">
+    <time className="route__time">
       {time}
-    </p>
+    </time>
   );
 
   return (
@@ -52,7 +52,9 @@ const Route = ({
 
         <div className="route__path">
           <p className="route__path-text">
-            Stops: {data.stops}
+            {data.stops}
+            {' '}
+            {`пересадк${data.stops > 1 ? 'и' : 'a'}`}
           </p>
           <div className="route__path-line">
             <span className="route__path-plane">

@@ -26,7 +26,7 @@ const Ticket = ({
         <Button
           className="ticket__btn-buy"
           classMod="primary">
-          Купить<br/>за ${price}
+          Купить<br/>за {price}&#8381;
         </Button>
       </div>
       <div className="ticket__col-info">

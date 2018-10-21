@@ -5,6 +5,11 @@
 
   display: flex;
   padding: $verticalPadding 20px;
+  transition: box-shadow $primary-transition-duration $primary-timing-function;
+
+  &:hover {
+    box-shadow: 0 5px 25px 0 rgba(91,137,164,0.10);
+  }
 
   &__col-cta {
     position: relative;

@@ -14,3 +14,5 @@ $primary-font: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Robo
 $primary-border-radius: 5px;
 $primary-transition-duration: .25s;
 $primary-timing-function: ease-in;
+
+$primary-shadow-on-focus: 0 0 0 0.4rem rgba($color-accent, .3);

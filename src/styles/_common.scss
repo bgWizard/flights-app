@@ -42,6 +42,6 @@ img {
 
 a {
   &:focus {
-    box-shadow: 0 0 0 0.4rem rgba(24, 144, 255, .2);
+    box-shadow: $primary-shadow-on-focus;
   }
 }

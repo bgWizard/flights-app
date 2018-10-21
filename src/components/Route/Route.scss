@@ -28,6 +28,7 @@
     flex-grow: 1;
 
     &-text {
+      text-transform: uppercase;
       text-align: center;
       color: $color-text--secondary;
     }
