@@ -1,5 +1,15 @@
 @import "../../styles/helpers/index";
 
 .filter {
-  padding: 15px;
+  &__header {
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    line-height: 1.58em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
 }

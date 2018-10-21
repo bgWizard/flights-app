@@ -1,5 +1,47 @@
 @import "../../styles/helpers/index";
 
 .checkboxes-list {
+  list-style: none;
 
+  &__item {
+    display: flex;
+    min-height: 35px;
+    justify-content: space-between;
+    align-items: center;
+    transition: background $primary-transition-duration $primary-timing-function;
+
+    &:hover {
+      background-color: $color-blue--light;
+
+      .checkboxes-list__link-only {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__checkbox {
+    margin-right: 15px;
+  }
+
+  &__link-only {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    height: 35px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $primary-transition-duration $primary-timing-function;
+  }
+
+  &--sidebar {
+    margin-left: -15px;
+    margin-right: -15px;
+
+    .checkboxes-list {
+      &__item {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+  }
 }

@@ -3,19 +3,47 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/tickets';
+import { filterTicketsByFilterStops } from '../utils/tickets';
 
 import TilesList from '../components/TilesList';
 import Ticket from '../components/Ticket';
 
 class TicketsListContainer extends Component {
+  state = {
+    tickets: [],
+  };
+
   componentDidMount() {
+    this.fetchTickets();
+  }
+
+  fetchTickets() {
     const { actions } = this.props;
 
     actions.fetchTicketsList();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.filterStops !== this.props.filterStops ||
+      prevProps.tickets !== this.props.tickets) {
+      this.filterTickets();
+    }
+  }
+
+  filterTickets() {
+    const { filterStops, tickets } = this.props;
+
+    const filteredTickets = filterTicketsByFilterStops(tickets, filterStops);
+
+    this.setState((prevState) => ({
+      ...prevState,
+      tickets: filteredTickets
+    }))
+  }
+
   render() {
-    const { tickets, isLoading, isLoaded } = this.props;
+    const { isLoading, isLoaded } = this.props;
+    const { tickets } = this.state;
 
     return (
       <Fragment>
@@ -42,22 +70,24 @@ TicketsListContainer.propTypes = {
   isLoaded: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
+  filterStops: PropTypes.array.isRequired,
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     tickets: state.tickets.tickets,
     isLoading: state.tickets.isLoading,
     isLoaded: state.tickets.isLoaded,
-    hasError: state.tickets.hasError
+    hasError: state.tickets.hasError,
+    filterStops: state.filterStops,
   };
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(actions, dispatch)
   };
-}
+};
 
 export default connect(
   mapStateToProps,

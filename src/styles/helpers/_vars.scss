@@ -1,8 +1,12 @@
 // colors
 $color-accent: #FF6D00;
 $color-accent--active: #FF8124;
+
 $color-grey: #D2D5D6;
 $color-grey--light: #ECEFF1;
+
+$color-blue: #2196F3;
+$color-blue--light: #F2FCFF;
 
 $color-text: #4a4a4a;
 $color-text--secondary: #8B9497;
@@ -13,6 +17,8 @@ $primary-font: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Robo
 // other
 $primary-border-radius: 5px;
 $primary-transition-duration: .25s;
+$fast-transition-duration: .15s;
 $primary-timing-function: ease-in;
 
 $primary-shadow-on-focus: 0 0 0 0.4rem rgba($color-accent, .3);
+$primary-shadow-on-focus--blue: 0 0 0 0.4rem rgba($color-blue, .3);

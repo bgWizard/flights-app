@@ -11,3 +11,22 @@ export const formatDate = (date) => {
 
   return moment(date, 'DD.MM.YY').format('D MMM YYYY, dd');
 };
+
+
+export const pluralize = (count, {
+  zero,
+  singular,
+  plural,
+}) => {
+  if (count === 0) {
+    return zero || '';
+  }
+
+  let output = singular;
+
+  if (count !== 1) {
+    output = plural;
+  }
+
+  return `${count} ${output}`;
+};

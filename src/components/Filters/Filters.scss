@@ -2,4 +2,10 @@
 
 .filters {
   padding: 15px;
+
+  &__item {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
 }

@@ -17,7 +17,7 @@ const Filter = ({
     <div className={filterClasses}>
       <div className="filter__header">
         <h3 className="filter__title">
-          title: {title}
+          {title}
         </h3>
       </div>
       <div className="filter__body">

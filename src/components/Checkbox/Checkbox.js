@@ -9,13 +9,11 @@ const Checkbox = ({
   id,
   labelText,
   onChange,
-  classMod,
   ...other,
 }) => {
   let input;
   const checkboxClasses = classNames(className, {
     'checkbox': true,
-    'checkbox--primary': classMod === 'primary',
   });
 
   return (
@@ -43,7 +41,6 @@ const Checkbox = ({
 Checkbox.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
-  classMod: PropTypes.string.isRequired,
   labelText: PropTypes.node,
   onChange: PropTypes.func,
   checked: PropTypes.bool,
@@ -53,7 +50,6 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   onChange: () => {},
   labelText: '',
-  classMod: 'primary',
 };
 
 export default Checkbox;

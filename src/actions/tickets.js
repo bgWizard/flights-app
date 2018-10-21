@@ -7,27 +7,27 @@ import { preprocessTicketsData } from '../utils/tickets';
 
 import data from '../data/tickets.json';
 
-export function getTicketsListRequest () {
+export const getTicketsListRequest = () => {
   return {
     type: GET_TICKETS_LIST
   };
-}
+};
 
-export function getTicketsListRequestSucccess (tickets) {
+export const getTicketsListRequestSucccess = (tickets) => {
   return {
     type: GET_TICKETS_LIST_SUCCESS,
     tickets
   };
-}
+};
 
-export function getTicketsListRequestFail (error) {
+export const getTicketsListRequestFail = (error) => {
   return {
     type: GET_TICKETS_LIST_FAIL,
     error
   };
-}
+};
 
-export function fetchTicketsList () {
+export const fetchTicketsList = () => {
   return (dispatch) => {
     dispatch(getTicketsListRequest());
 
@@ -35,4 +35,4 @@ export function fetchTicketsList () {
 
     dispatch(getTicketsListRequestSucccess(tickets))
   };
-}
+};

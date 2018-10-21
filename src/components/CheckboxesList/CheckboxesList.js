@@ -8,10 +8,14 @@ import './CheckboxesList.scss';
 
 const CheckboxesList = ({
   className,
+  classMod,
   children,
+  onItemLinkClick,
+  isFirstLinkDisabled,
 }) => {
   const checkboxesListClasses = classNames(className, {
     'checkboxes-list': true,
+    'checkboxes-list--sidebar': classMod === 'sidebar',
   });
 
   return (
@@ -23,11 +27,13 @@ const CheckboxesList = ({
           {React.cloneElement(child, {
             className: 'checkboxes-list__checkbox',
           })}
+          {!(isFirstLinkDisabled && index === 0) &&
           <Button
+            onClick={onItemLinkClick(index)}
             className="checkboxes-list__link-only"
             classMod="link">
             Только
-          </Button>
+          </Button>}
         </li>
       ))}
     </ul>
@@ -37,6 +43,13 @@ const CheckboxesList = ({
 CheckboxesList.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  classMod: PropTypes.string,
+  onItemLinkClick: PropTypes.func,
+  isFirstItemLinkDisabled: PropTypes.bool,
+};
+
+CheckboxesList.defaultProps = {
+  isFirstLinkDisabled: false,
 };
 
 export default CheckboxesList;

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { pluralize } from '../../utils/common';
 import { ReactComponent as PlaneIcon } from '../../static/plane-ico.svg';
 
 import './Route.scss';
@@ -52,9 +53,10 @@ const Route = ({
 
         <div className="route__path">
           <p className="route__path-text">
-            {data.stops}
-            {' '}
-            {`пересадк${data.stops > 1 ? 'и' : 'a'}`}
+            {pluralize(data.stops, {
+              singular: 'пересадка',
+              plural: 'пересадки'
+            })}
           </p>
           <div className="route__path-line">
             <span className="route__path-plane">
