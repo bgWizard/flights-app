@@ -16,7 +16,7 @@ npm run build
 
 ## Check live
 
-[Flights-app](#0)
+[Flights-app](https://app-flights.netlify.com/)
 
 ## Used libs/resources
 
