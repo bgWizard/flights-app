@@ -21,7 +21,6 @@ npm run build
 ## Used libs/resources
 
 * [Create React App](https://facebook.github.io/create-react-app/)
-* [Autoprefixer](https://github.com/postcss/autoprefixer)
 * [Redux](https://redux.js.org/)
 * [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 * [Axios](https://github.com/axios/axios)
