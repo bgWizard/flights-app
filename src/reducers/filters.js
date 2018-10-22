@@ -1,13 +1,13 @@
 import {
-  TOGGLE_STOP_FILTER,
-  CHECK_ALL_STOPS_FILTER,
-  UNCHECK_ALL_STOPS_FILTER,
+  TOGGLE_FILTER,
+  CHECK_ALL_FILTERS,
+  UNCHECK_ALL_FILTERS,
 } from '../constants/actionTypes';
 import initialState from './initialState';
 
-function filterStops(state = initialState.filterStops, action) {
+function filters(state = initialState.filters, action) {
   switch (action.type) {
-    case TOGGLE_STOP_FILTER:
+    case TOGGLE_FILTER:
       return [
         ...state.slice(0, action.filterIndex),
         {
@@ -16,12 +16,12 @@ function filterStops(state = initialState.filterStops, action) {
         },
         ...state.slice(action.filterIndex + 1),
       ];
-    case CHECK_ALL_STOPS_FILTER:
+    case CHECK_ALL_FILTERS:
       return state.map((filter) => ({
         ...filter,
         isChecked: true,
       }));
-    case UNCHECK_ALL_STOPS_FILTER:
+    case UNCHECK_ALL_FILTERS:
       return state.map((filter) => ({
         ...filter,
         isChecked: false,
@@ -31,4 +31,4 @@ function filterStops(state = initialState.filterStops, action) {
   }
 }
 
-export default filterStops;
+export default filters;

@@ -1,5 +1,5 @@
 import {formatDate} from './common';
-import { filterStopsNames } from '../constants/common';
+import { filterName } from '../constants/common';
 
 export const preprocessTicketsData = ({tickets}) => {
   return tickets
@@ -18,25 +18,25 @@ export const preprocessTicketsData = ({tickets}) => {
     });
 };
 
-const stopsNameToStopsNumberMapping = {
-  [filterStopsNames.WITHOUT_STOPS]: 0,
-  [filterStopsNames.ONE_STOP]: 1,
-  [filterStopsNames.TWO_STOPS]: 2,
-  [filterStopsNames.THREE_STOPS]: 3,
+const filterToValueMapping = {
+  [filterName.WITHOUT_STOPS]: 0,
+  [filterName.ONE_STOP]: 1,
+  [filterName.TWO_STOPS]: 2,
+  [filterName.THREE_STOPS]: 3,
 };
 
-const isFilterStopsAllChecked = (stopsFilters) => {
-  return Boolean(stopsFilters.find(filter => filter.name === filterStopsNames.ALL));
+const isFilterNameAllChecked = (filters) => {
+  return Boolean(filters.find(filter => filter.name === filterName.ALL));
 };
 
-export const filterTicketsByFilterStops = (tickets, stopsFilters) => {
-  const activeFilters = stopsFilters.filter((filter) => filter.isChecked);
+export const filterTickets = (tickets, filters) => {
+  const activeFilters = filters.filter((filter) => filter.isChecked);
 
-  if (isFilterStopsAllChecked(activeFilters)) {
+  if (isFilterNameAllChecked(activeFilters)) {
     return tickets;
   }
 
-  const allowedStops = activeFilters.map(filter => stopsNameToStopsNumberMapping[filter.name]);
+  const allowedValues = activeFilters.map(filter => filterToValueMapping[filter.name]);
 
-  return tickets.filter(ticket => allowedStops.includes(ticket.stops))
+  return tickets.filter(ticket => allowedValues.includes(ticket.stops))
 };

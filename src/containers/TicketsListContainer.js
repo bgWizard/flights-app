@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/tickets';
-import { filterTicketsByFilterStops } from '../utils/tickets';
+import { filterTickets } from '../utils/tickets';
 
 import TilesList from '../components/TilesList';
 import Ticket from '../components/Ticket';
@@ -24,16 +24,16 @@ class TicketsListContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.filterStops !== this.props.filterStops ||
+    if (prevProps.filters !== this.props.filters ||
       prevProps.tickets !== this.props.tickets) {
       this.filterTickets();
     }
   }
 
   filterTickets() {
-    const { filterStops, tickets } = this.props;
+    const { filters, tickets } = this.props;
 
-    const filteredTickets = filterTicketsByFilterStops(tickets, filterStops);
+    const filteredTickets = filterTickets(tickets, filters);
 
     this.setState((prevState) => ({
       ...prevState,
@@ -70,7 +70,7 @@ TicketsListContainer.propTypes = {
   isLoaded: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
-  filterStops: PropTypes.array.isRequired,
+  filters: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
     isLoading: state.tickets.isLoading,
     isLoaded: state.tickets.isLoaded,
     hasError: state.tickets.hasError,
-    filterStops: state.filterStops,
+    filters: state.filters,
   };
 };
 

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import tickets from './tickets';
-import filterStops from './filterStops';
+import filters from './filters';
 
 const rootReducer = combineReducers({
   tickets,
-  filterStops,
+  filters,
 });
 
 export default rootReducer;

@@ -1,4 +1,4 @@
-import { filterStopsNames } from '../constants/common';
+import { filterName } from '../constants/common';
 
 export default {
   tickets: {
@@ -8,25 +8,25 @@ export default {
     isLoaded: false,
     hasError: false
   },
-  filterStops: [
+  filters: [
     {
-      name: filterStopsNames.ALL,
+      name: filterName.ALL,
       isChecked: true,
     },
     {
-      name: filterStopsNames.WITHOUT_STOPS,
+      name: filterName.WITHOUT_STOPS,
       isChecked: true,
     },
     {
-      name: filterStopsNames.ONE_STOP,
+      name: filterName.ONE_STOP,
       isChecked: true,
     },
     {
-      name: filterStopsNames.TWO_STOPS,
+      name: filterName.TWO_STOPS,
       isChecked: true,
     },
     {
-      name: filterStopsNames.THREE_STOPS,
+      name: filterName.THREE_STOPS,
       isChecked: true,
     }
   ]

@@ -1,6 +1,6 @@
 export const defaultLocale = 'ru';
 
-export const filterStopsNames = {
+export const filterName = {
   ALL: 'all',
   WITHOUT_STOPS: 'withoutStops',
   ONE_STOP: 'oneStop',

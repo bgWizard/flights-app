@@ -2,47 +2,47 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/filterStops';
-import { filterStopsNames } from '../constants/common';
+import * as actions from '../actions/filters';
+import { filterName } from '../constants/common';
 
 import Filters from '../components/Filters';
 import Filter from '../components/Filter';
 import CheckboxesList from '../components/CheckboxesList';
 import Checkbox from '../components/Checkbox';
 
-const filterStopsNamesMapping = {
-  [filterStopsNames.ALL]: 'Все',
-  [filterStopsNames.WITHOUT_STOPS]: 'Без пересадок',
-  [filterStopsNames.ONE_STOP]: '1 пересадка',
-  [filterStopsNames.TWO_STOPS]: '2 пересадки',
-  [filterStopsNames.THREE_STOPS]: '3 пересадки',
+const filterNameMapping = {
+  [filterName.ALL]: 'Все',
+  [filterName.WITHOUT_STOPS]: 'Без пересадок',
+  [filterName.ONE_STOP]: '1 пересадка',
+  [filterName.TWO_STOPS]: '2 пересадки',
+  [filterName.THREE_STOPS]: '3 пересадки',
 };
 
 class FiltersContainer extends Component {
-  onFilterStopsChange = (filterIndex, filter) => () => {
+  onFilterChange = (filterIndex, filter) => () => {
     const { actions } = this.props;
 
-    if (filter.name === filterStopsNames.ALL) {
+    if (filter.name === filterName.ALL) {
       if (filter.isChecked) {
-        actions.uncheckAllStopsFilter();
+        actions.uncheckAllFilters();
       } else {
-        actions.checkAllStopsFilter();
+        actions.checkAllFilters();
       }
       return;
     }
 
-    actions.toggleStopFilterByName(filterIndex);
+    actions.toggleFilterByName(filterIndex);
   };
 
-  onOnlyOneFilterStopsClick = (filterIndex) => () => {
+  onOnlyOneFilterClick = (filterIndex) => () => {
     const { actions } = this.props;
 
-    actions.uncheckAllStopsFilter();
-    actions.toggleStopFilterByName(filterIndex);
+    actions.uncheckAllFilters();
+    actions.toggleFilterByName(filterIndex);
   };
 
   render() {
-    const { filterStops } = this.props;
+    const { filters } = this.props;
 
     return (
       <Filters>
@@ -51,16 +51,16 @@ class FiltersContainer extends Component {
         </Filter>
         <Filter title="Количество пересадок">
           <CheckboxesList
-            onItemLinkClick={this.onOnlyOneFilterStopsClick}
+            onItemLinkClick={this.onOnlyOneFilterClick}
             classMod='sidebar'
             isFirstLinkDisabled={true}>
-            {filterStops.map((filter, index) => (
+            {filters.map((filter, index) => (
               <Checkbox
                 key={filter.name}
                 id={filter.name}
                 checked={filter.isChecked}
-                onChange={this.onFilterStopsChange(index, filter)}
-                labelText={filterStopsNamesMapping[filter.name]}/>
+                onChange={this.onFilterChange(index, filter)}
+                labelText={filterNameMapping[filter.name]}/>
             ))}
           </CheckboxesList>
         </Filter>
@@ -70,13 +70,13 @@ class FiltersContainer extends Component {
 }
 
 FiltersContainer.propTypes = {
-  filterStops: PropTypes.array.isRequired,
+  filters: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    filterStops: state.filterStops,
+    filters: state.filters,
   };
 };
 
