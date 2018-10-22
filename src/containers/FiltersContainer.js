@@ -42,10 +42,10 @@ class FiltersContainer extends Component {
     actions.toggleFilterByIndex(filterIndex);
   };
 
-  onCurrencyChange = (index, currency) => () => {
+  onCurrencyChange = (index) => () => {
     const { actions } = this.props;
 
-    actions.toggleCheckedCurrency(index, currency);
+    actions.toggleCurrencyByIndex(index);
   };
 
   render() {

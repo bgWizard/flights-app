@@ -28,7 +28,7 @@ const Switcher = ({
             key={index}
             type="button"
             className={className}
-            onClick={onChange(index, child)}>
+            onClick={onChange(index)}>
             {child}
           </button>
         )

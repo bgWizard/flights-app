@@ -1,14 +1,13 @@
 import {
   TOGGLE_CURRENCY,
-  GET_CURRENCY_RATE,
-  GET_CURRENCY_RATE_SUCCESS,
-  GET_CURRENCY_RATE_FAIL,
+  GET_CURRENCY_RATES,
+  GET_CURRENCY_RATES_SUCCESS,
+  GET_CURRENCY_RATES_FAIL,
 } from '../constants/actionTypes';
 import axios from 'axios';
-import { getCurrencyRateFromResponse } from '../utils/currency';
+import { getCurrencyRatesFromResponse } from '../utils/currency';
 
 import { getCurrencyRate } from '../constants/api';
-import { BASE_CURRENCY } from '../constants/common'
 
 export const toggleCurrencyByIndex = (index) => {
   return {
@@ -17,48 +16,36 @@ export const toggleCurrencyByIndex = (index) => {
   };
 };
 
-export const getCurrencyRateRequest = () => {
+export const getCurrencyRatesRequest = () => {
   return {
-    type: GET_CURRENCY_RATE
+    type: GET_CURRENCY_RATES
   };
 };
 
-export const getCurrencyRateRequestSucccess = (rate) => {
+export const getCurrencyRatesRequestSucccess = (rates) => {
   return {
-    type: GET_CURRENCY_RATE_SUCCESS,
-    rate
+    type: GET_CURRENCY_RATES_SUCCESS,
+    rates
   };
 };
 
-export const getCurrencyRateRequestFail = (error) => {
+export const getCurrencyRatesRequestFail = (error) => {
   return {
-    type: GET_CURRENCY_RATE_FAIL,
+    type: GET_CURRENCY_RATES_FAIL,
     error
   };
 };
 
-export const fetchCurrencyRate = (currency) => {
+export const fetchCurrencyRates = (currency) => {
   return (dispatch) => {
-    dispatch(getCurrencyRateRequest());
+    dispatch(getCurrencyRatesRequest());
 
     axios.get(getCurrencyRate())
       .then(response => {
-        const currencyRate = getCurrencyRateFromResponse(response, currency);
+        const currencyRates = getCurrencyRatesFromResponse(response, currency);
 
-        dispatch(getCurrencyRateRequestSucccess(currencyRate))
+        dispatch(getCurrencyRatesRequestSucccess(currencyRates))
       })
-      .catch(error => dispatch(getCurrencyRateRequestFail(error)));
-  };
-};
-
-export const toggleCheckedCurrency = (index, currency) => {
-  return (dispatch) => {
-    dispatch(toggleCurrencyByIndex(index));
-
-    if (currency === BASE_CURRENCY) {
-      dispatch(getCurrencyRateRequestSucccess(1));
-    } else {
-      dispatch(fetchCurrencyRate(currency));
-    }
+      .catch(error => dispatch(getCurrencyRatesRequestFail(error)));
   };
 };

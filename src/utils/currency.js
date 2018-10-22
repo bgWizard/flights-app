@@ -1,5 +1,10 @@
-export const getCurrencyRateFromResponse = (response, currency) => {
+import { currency as currencyNames } from '../constants/common';
+
+export const getCurrencyRatesFromResponse = (response) => {
   const { rates } = response.data || {};
 
-  return rates[currency] || 1;
+  return Object.values(currencyNames).reduce((result, currency) => {
+    result[currency] = rates[currency];
+    return result;
+  }, {});
 };

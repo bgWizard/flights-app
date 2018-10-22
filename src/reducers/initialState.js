@@ -36,7 +36,9 @@ export default {
       currency.EUR,
     ],
     checkedCurrencyIndex: 0,
-    currencyRate: 1,
+    currencyRates: {
+      [currency.RUB]: 1,
+    },
     isLoading: false,
     isLoaded: false,
     hasError: false

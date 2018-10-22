@@ -1,8 +1,8 @@
 import {
   TOGGLE_CURRENCY,
-  GET_CURRENCY_RATE,
-  GET_CURRENCY_RATE_SUCCESS,
-  GET_CURRENCY_RATE_FAIL,
+  GET_CURRENCY_RATES,
+  GET_CURRENCY_RATES_SUCCESS,
+  GET_CURRENCY_RATES_FAIL,
 } from '../constants/actionTypes';
 import initialState from './initialState';
 
@@ -13,21 +13,24 @@ function currency(state = initialState.currency, action) {
         ...state,
         checkedCurrencyIndex: action.index
       };
-    case GET_CURRENCY_RATE:
+    case GET_CURRENCY_RATES:
       return {
         ...state,
         isLoading: true,
         isLoaded: false,
         hasError: false
       };
-    case GET_CURRENCY_RATE_SUCCESS:
+    case GET_CURRENCY_RATES_SUCCESS:
       return {
         ...state,
-        currencyRate: action.rate,
+        currencyRates: {
+          ...state.currencyRates,
+          ...action.rates,
+        },
         isLoading: false,
         isLoaded: true
       };
-    case GET_CURRENCY_RATE_FAIL:
+    case GET_CURRENCY_RATES_FAIL:
       return {
         ...state,
         hasError: true,
