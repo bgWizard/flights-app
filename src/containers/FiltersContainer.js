@@ -57,7 +57,7 @@ class FiltersContainer extends Component {
 
     return (
       <Filters>
-        <Filter title="Currency">
+        <Filter title="ВАЛЮТА">
           <Switcher
             activeItemIndex={checkedCurrencyIndex}
             onChange={this.onCurrencyChange}>

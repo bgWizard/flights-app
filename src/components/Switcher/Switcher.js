@@ -18,9 +18,11 @@ const Switcher = ({
     <div className={switcherClasses}>
       {React.Children.map(children, (child, index) => {
         let className = 'switcher__item';
+        let onClick = onChange(index);
 
         if (index === activeItemIndex) {
-          className = `${className} ${className}--active`
+          className = `${className} is-active`;
+          onClick = () => null;
         }
 
         return (
@@ -28,7 +30,7 @@ const Switcher = ({
             key={index}
             type="button"
             className={className}
-            onClick={onChange(index)}>
+            onClick={onClick}>
             {child}
           </button>
         )

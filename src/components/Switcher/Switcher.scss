@@ -1,5 +1,58 @@
 @import "../../styles/helpers/index";
 
 .switcher {
+  width: 100%;
+  display: flex;
 
+  &__item {
+    flex-grow: 1;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    padding: 9px 10px;
+    font-weight: 600;
+    color: $color-blue;
+    text-wrap: none;
+    background-color: #fff;
+    border: 1px solid $color-grey;
+    transition-property: box-shadow, background, color, border;
+    transition-duration: $fast-transition-duration;
+    transition-timing-function: $primary-timing-function;
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+
+    &:first-child {
+      border-radius: $primary-border-radius 0 0 $primary-border-radius;
+    }
+
+    &:last-child {
+      border-radius: 0 $primary-border-radius $primary-border-radius 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:not(.is-active) {
+      cursor: pointer;
+
+      &:focus{
+        box-shadow: $primary-shadow-on-focus--blue;
+        z-index: 2;
+      }
+
+      &:hover{
+        background-color: $color-blue--light;
+        border-color: $color-blue;
+        z-index: 2;
+      }
+    }
+
+    &.is-active{
+      background-color: $color-blue;
+      border-color: $color-blue;
+      color: #fff;
+    }
+  }
 }
