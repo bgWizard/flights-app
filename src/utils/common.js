@@ -1,6 +1,6 @@
 import moment from 'moment';
 import 'moment/locale/ru';
-import { defaultLocale } from '../constants/common';
+import { defaultLocale, currency as currencyName, currencyToSymbolMap } from '../constants/common';
 
 moment.updateLocale(defaultLocale);
 
@@ -11,7 +11,6 @@ export const formatDate = (date) => {
 
   return moment(date, 'DD.MM.YY').format('D MMM YYYY, dd');
 };
-
 
 export const pluralize = (count, {
   zero,
@@ -29,4 +28,14 @@ export const pluralize = (count, {
   }
 
   return `${count} ${output}`;
+};
+
+export const numberToPrice = (number, currency) => {
+  number = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+  if (currency === currencyName.RUB) {
+    return `${number}${currencyToSymbolMap[currency]}`
+  }
+
+  return `${currencyToSymbolMap[currency]}${number}`
 };

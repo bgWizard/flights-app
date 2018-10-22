@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/filters';
+import { filters, currency } from '../actions';
 import { filterName } from '../constants/common';
 
 import Filters from '../components/Filters';
 import Filter from '../components/Filter';
 import CheckboxesList from '../components/CheckboxesList';
 import Checkbox from '../components/Checkbox';
+import Switcher from '../components/Switcher';
 
 const filterNameMapping = {
   [filterName.ALL]: 'Все',
@@ -31,23 +32,37 @@ class FiltersContainer extends Component {
       return;
     }
 
-    actions.toggleFilterByName(filterIndex);
+    actions.toggleFilterByIndex(filterIndex);
   };
 
   onOnlyOneFilterClick = (filterIndex) => () => {
     const { actions } = this.props;
 
     actions.uncheckAllFilters();
-    actions.toggleFilterByName(filterIndex);
+    actions.toggleFilterByIndex(filterIndex);
+  };
+
+  onCurrencyChange = (index, currency) => () => {
+    const { actions } = this.props;
+
+    actions.toggleCheckedCurrency(index, currency);
   };
 
   render() {
-    const { filters } = this.props;
+    const {
+      filters,
+      currencies,
+      checkedCurrencyIndex,
+    } = this.props;
 
     return (
       <Filters>
         <Filter title="Currency">
-          inner
+          <Switcher
+            activeItemIndex={checkedCurrencyIndex}
+            onChange={this.onCurrencyChange}>
+            {currencies}
+          </Switcher>
         </Filter>
         <Filter title="Количество пересадок">
           <CheckboxesList
@@ -72,17 +87,24 @@ class FiltersContainer extends Component {
 FiltersContainer.propTypes = {
   filters: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  currencies: PropTypes.array.isRequired,
+  checkedCurrencyIndex: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     filters: state.filters,
+    currencies: state.currency.currencies,
+    checkedCurrencyIndex: state.currency.checkedCurrencyIndex,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators({
+      ...filters,
+      ...currency,
+    }, dispatch)
   };
 };
 

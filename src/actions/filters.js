@@ -4,10 +4,10 @@ import {
   UNCHECK_ALL_FILTERS,
 } from '../constants/actionTypes';
 
-export const toggleFilterByName = (filterIndex) => {
+export const toggleFilterByIndex = (index) => {
   return {
     type: TOGGLE_FILTER,
-    filterIndex
+    index
   };
 };
 

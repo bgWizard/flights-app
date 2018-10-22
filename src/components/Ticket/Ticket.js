@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import turkishAirlinesLogo from '../../static/turkish-airlines-logo.png';
 import turkishAirlinesLogo2x from '../../static/turkish-airlines-logo@2x.png';
+import { numberToPrice } from '../../utils/common';
+import { currency as currencyNames } from '../../constants/common';
 
 import Tile from '../Tile';
 import Button from '../Button';
@@ -11,8 +13,10 @@ import './Ticket.scss';
 
 const Ticket = ({
   data,
+  currency,
 }) => {
   const {price, ...routeData} = data;
+  const priceText = numberToPrice(price, currency);
 
   return (
     <Tile className="ticket">
@@ -26,7 +30,7 @@ const Ticket = ({
         <Button
           className="ticket__btn-buy"
           classMod="primary">
-          Купить<br/>за {price}&#8381;
+          Купить<br/>за {priceText}
         </Button>
       </div>
       <div className="ticket__col-info">
@@ -38,6 +42,7 @@ const Ticket = ({
 
 Ticket.propTypes = {
   data: PropTypes.object.isRequired,
+  currency: PropTypes.oneOf(Object.values(currencyNames)),
 };
 
 export default Ticket;

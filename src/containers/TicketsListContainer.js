@@ -2,15 +2,16 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../actions/tickets';
-import { filterTickets } from '../utils/tickets';
+import { tickets } from '../actions';
+import { filterTickets, updateTicketsPriceByRate } from '../utils/tickets';
 
 import TilesList from '../components/TilesList';
 import Ticket from '../components/Ticket';
 
 class TicketsListContainer extends Component {
   state = {
-    tickets: [],
+    tickets: this.props.tickets,
+    filteredTickets: this.props.tickets
   };
 
   componentDidMount() {
@@ -23,26 +24,40 @@ class TicketsListContainer extends Component {
     actions.fetchTicketsList();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.filters !== this.props.filters ||
-      prevProps.tickets !== this.props.tickets) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.tickets !== this.props.tickets ||
+      prevProps.currencyRate !== this.props.currencyRate) {
+      this.updateTicketsPrice();
+    }
+
+    if (prevState.tickets !== this.state.tickets ||
+      prevProps.filters !== this.props.filters) {
       this.filterTickets();
     }
   }
 
   filterTickets() {
-    const { filters, tickets } = this.props;
+    console.log('filterTickets');
+    const newTickets = filterTickets(this.state.tickets, this.props.filters);
 
-    const filteredTickets = filterTickets(tickets, filters);
-
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       ...prevState,
-      tickets: filteredTickets
-    }))
+      filteredTickets: newTickets,
+    }));
+  }
+
+  updateTicketsPrice() {
+    console.log('updateTicketsPrice');
+    const newTickets = updateTicketsPriceByRate(this.props.tickets, this.props.currencyRate);
+
+    this.setState(prevState => ({
+      ...prevState,
+      tickets: newTickets,
+    }));
   }
 
   render() {
-    const { isLoading, isLoaded } = this.props;
+    const { isLoading, isLoaded, currencies, checkedCurrencyIndex } = this.props;
     const { tickets } = this.state;
 
     return (
@@ -56,7 +71,8 @@ class TicketsListContainer extends Component {
             {tickets.map((ticket, index) => (
               <Ticket
                 key={index}
-                data={ticket}/>
+                data={ticket}
+                currency={currencies[checkedCurrencyIndex]}/>
             ))}
           </TilesList>}
       </Fragment>
@@ -71,6 +87,9 @@ TicketsListContainer.propTypes = {
   hasError: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   filters: PropTypes.array.isRequired,
+  currencyRate: PropTypes.number.isRequired,
+  currencies: PropTypes.array.isRequired,
+  checkedCurrencyIndex: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -80,12 +99,15 @@ const mapStateToProps = (state) => {
     isLoaded: state.tickets.isLoaded,
     hasError: state.tickets.hasError,
     filters: state.filters,
+    currencyRate: state.currency.currencyRate,
+    currencies: state.currency.currencies,
+    checkedCurrencyIndex: state.currency.checkedCurrencyIndex,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(tickets, dispatch)
   };
 };
 

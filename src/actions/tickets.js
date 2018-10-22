@@ -33,6 +33,6 @@ export const fetchTicketsList = () => {
 
     const tickets = preprocessTicketsData(data);
 
-    dispatch(getTicketsListRequestSucccess(tickets))
+    dispatch(getTicketsListRequestSucccess(tickets));
   };
 };

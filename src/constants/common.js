@@ -7,3 +7,17 @@ export const filterName = {
   TWO_STOPS: 'twoStops',
   THREE_STOPS: 'threeStops',
 };
+
+export const currency = {
+  RUB: 'RUB',
+  USD: 'USD',
+  EUR: 'EUR',
+};
+
+export const currencyToSymbolMap = {
+  [currency.RUB]: '₽',
+  [currency.USD]: '$',
+  [currency.EUR]: '€',
+};
+
+export const BASE_CURRENCY = currency.RUB;

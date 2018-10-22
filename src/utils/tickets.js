@@ -40,3 +40,18 @@ export const filterTickets = (tickets, filters) => {
 
   return tickets.filter(ticket => allowedValues.includes(ticket.stops))
 };
+
+export const updateTicketsPriceByRate = (tickets, rate) => {
+  if (tickets.length <= 0) {
+    return tickets;
+  }
+
+  return tickets.map((ticket) => {
+    const newPrice = (ticket.price * rate).toFixed(0);
+
+    return {
+      ...ticket,
+      price: newPrice,
+    }
+  });
+};

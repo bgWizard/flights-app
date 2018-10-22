@@ -1,9 +1,8 @@
-import { filterName } from '../constants/common';
+import { filterName, currency } from '../constants/common';
 
 export default {
   tickets: {
     tickets: [],
-    searchTag: '',
     isLoading: false,
     isLoaded: false,
     hasError: false
@@ -29,5 +28,17 @@ export default {
       name: filterName.THREE_STOPS,
       isChecked: true,
     }
-  ]
+  ],
+  currency: {
+    currencies: [
+      currency.RUB,
+      currency.USD,
+      currency.EUR,
+    ],
+    checkedCurrencyIndex: 0,
+    currencyRate: 1,
+    isLoading: false,
+    isLoaded: false,
+    hasError: false
+  }
 };

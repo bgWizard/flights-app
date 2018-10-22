@@ -9,12 +9,12 @@ function filters(state = initialState.filters, action) {
   switch (action.type) {
     case TOGGLE_FILTER:
       return [
-        ...state.slice(0, action.filterIndex),
+        ...state.slice(0, action.index),
         {
-          ...state[action.filterIndex],
-          isChecked: !state[action.filterIndex].isChecked,
+          ...state[action.index],
+          isChecked: !state[action.index].isChecked,
         },
-        ...state.slice(action.filterIndex + 1),
+        ...state.slice(action.index + 1),
       ];
     case CHECK_ALL_FILTERS:
       return state.map((filter) => ({
