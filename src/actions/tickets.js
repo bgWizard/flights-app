@@ -3,6 +3,9 @@ import {
   GET_TICKETS_LIST_SUCCESS,
   GET_TICKETS_LIST_FAIL
 } from '../constants/actionTypes';
+
+import axios from 'axios';
+import { getTickets } from '../constants/api';
 import { preprocessTicketsData } from '../utils/tickets';
 
 import data from '../data/tickets.json';
@@ -31,8 +34,19 @@ export const fetchTicketsList = () => {
   return (dispatch) => {
     dispatch(getTicketsListRequest());
 
-    const tickets = preprocessTicketsData(data);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('!production');
+      axios.get(getTickets())
+        .then(response => {
+          const tickets = preprocessTicketsData(response.data);
 
-    dispatch(getTicketsListRequestSucccess(tickets));
+          dispatch(getTicketsListRequestSucccess(tickets));
+        })
+        .catch(error => dispatch(getTicketsListRequestFail(error)))
+    } else {
+      const tickets = preprocessTicketsData(data.tickets);
+
+      dispatch(getTicketsListRequestSucccess(tickets));
+    }
   };
 };

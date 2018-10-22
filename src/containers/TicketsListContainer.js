@@ -72,7 +72,7 @@ class TicketsListContainer extends Component {
       <Fragment>
         {hasError &&
           <NotifyMeassage type="error">
-            Упс, что то случилось. Попробуйте перезагрузить страницу. Не волнуйтесь, скоро мы все починим <span role="img" aria-label="wing">😉</span>
+            Упс, что то случилось. Попробуйте перезагрузить страницу.<br/>Не волнуйтесь, скоро мы все починим <span role="img" aria-label="wing">😉</span>
           </NotifyMeassage>}
         {isLoading &&
           <NotifyMeassage type="loading">

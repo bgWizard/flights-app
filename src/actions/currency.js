@@ -4,9 +4,9 @@ import {
   GET_CURRENCY_RATES_SUCCESS,
   GET_CURRENCY_RATES_FAIL,
 } from '../constants/actionTypes';
+
 import axios from 'axios';
 import { getCurrencyRatesFromResponse } from '../utils/currency';
-
 import { getCurrencyRate } from '../constants/api';
 
 export const toggleCurrencyByIndex = (index) => {

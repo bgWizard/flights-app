@@ -1,8 +1,8 @@
 import {formatDate} from './common';
 import { filterName } from '../constants/common';
 
-export const preprocessTicketsData = ({tickets}) => {
-  return tickets
+export const preprocessTicketsData = (data) => {
+  return data
     .sort((a, b) => a.price - b.price)
     .map((ticket) => {
       const {departure_date, arrival_date} = ticket;

@@ -7,11 +7,11 @@ npm install
 # serve dev at localhost:3000
 npm start
 
+# serve mock-server at localhost:3003
+npm run server
+
 # build for production
 npm run build
-
-# run tests
-npm run test
 ```
 
 ## Check live
