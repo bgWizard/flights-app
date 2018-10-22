@@ -12,4 +12,10 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
   }
+
+  @include mq-max(767) {
+    &__header {
+      margin-bottom: 5px;
+    }
+  }
 }

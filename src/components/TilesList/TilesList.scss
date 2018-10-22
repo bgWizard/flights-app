@@ -8,4 +8,12 @@
       margin-top: 20px;
     }
   }
+
+  @include mq-max(767) {
+    &__item {
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
+  }
 }

@@ -55,4 +55,10 @@
       color: #fff;
     }
   }
+
+  @include mq-max(767) {
+    &__item{
+      line-height: 1.3;
+    }
+  }
 }

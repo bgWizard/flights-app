@@ -83,4 +83,26 @@
   &__date {
     color: $color-text--secondary;
   }
+
+  @include mq-max(767) {
+    &__origin {
+      padding-right: 10px;
+    }
+
+    &__destination {
+      padding-right: 10px;
+    }
+
+    &__time {
+      font-size: 2.6rem;
+    }
+
+    &__path {
+      margin-bottom: -3px;
+
+      &-text{
+        margin-bottom: -4px;
+      }
+    }
+  }
 }

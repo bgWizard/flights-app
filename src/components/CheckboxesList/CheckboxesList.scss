@@ -44,4 +44,14 @@
       }
     }
   }
+
+  @include mq-max(767) {
+    &__item {
+      min-height: 32px;
+    }
+
+    &__link-only {
+      height: 32px;
+    }
+  }
 }

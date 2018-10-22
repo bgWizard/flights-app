@@ -40,4 +40,39 @@
   &__btn-buy {
     width: 100%;
   }
+
+  @include mq-max(767) {
+    padding: 15px;
+    display: block;
+
+    &__col-cta{
+      width: 100%;
+      padding-right: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &__col-info {
+      padding-left: 0;
+    }
+
+    &__company-logo {
+      max-width: 80px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+
+    &__btn-buy {
+      margin-left: 20px;
+      width: auto;
+      flex-grow: 1;
+      max-width: 140px;
+    }
+  }
 }
