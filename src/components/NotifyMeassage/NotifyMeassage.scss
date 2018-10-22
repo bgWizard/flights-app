@@ -1,0 +1,30 @@
+@import "../../styles/helpers/index";
+
+.notify-meassage {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+
+  &__content{
+    font-size: 1.6rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  &--loading {
+    padding: 0;
+
+    .notify-meassage__content {
+      display: inline-block;
+      font-size: 4rem;
+      animation: spin 3s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

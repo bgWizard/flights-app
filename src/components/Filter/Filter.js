@@ -30,11 +30,7 @@ const Filter = ({
 Filter.propTypes = {
   title: PropTypes.string.isRequired,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.func,
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.node,
 };
 
 export default Filter;

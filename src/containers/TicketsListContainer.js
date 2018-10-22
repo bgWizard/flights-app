@@ -7,6 +7,7 @@ import { filterTickets, updateTicketsPriceByRate } from '../utils/tickets';
 
 import TilesList from '../components/TilesList';
 import Ticket from '../components/Ticket';
+import NotifyMeassage from '../components/NotifyMeassage';
 
 class TicketsListContainer extends Component {
   state = {
@@ -64,15 +65,19 @@ class TicketsListContainer extends Component {
   }
 
   render() {
-    const { isLoading, isLoaded, currencies, checkedCurrencyIndex } = this.props;
+    const { isLoading, isLoaded, hasError, currencies, checkedCurrencyIndex } = this.props;
     const { filteredTickets: tickets } = this.state;
 
     return (
       <Fragment>
+        {hasError &&
+          <NotifyMeassage type="error">
+            Упс, что то случилось. Попробуйте перезагрузить страницу. Не волнуйтесь, скоро мы все починим <span role="img" aria-label="wing">😉</span>
+          </NotifyMeassage>}
         {isLoading &&
-          <p>
-            Loading...
-          </p>}
+          <NotifyMeassage type="loading">
+            <span role="img" aria-label="loading">🧘‍♀️</span>
+          </NotifyMeassage>}
         {isLoaded && tickets.length > 0 &&
           <TilesList>
             {tickets.map((ticket, index) => (

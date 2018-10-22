@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,6 +10,7 @@ import Filter from '../components/Filter';
 import CheckboxesList from '../components/CheckboxesList';
 import Checkbox from '../components/Checkbox';
 import Switcher from '../components/Switcher';
+import NotifyMeassage from '../components/NotifyMeassage';
 
 const filterNameMapping = {
   [filterName.ALL]: 'Все',
@@ -53,17 +54,31 @@ class FiltersContainer extends Component {
       filters,
       currencies,
       checkedCurrencyIndex,
+      currencyIsLoaded,
+      currencyIsLoading,
+      currencyHasError
     } = this.props;
 
     return (
       <Filters>
-        <Filter title="ВАЛЮТА">
-          <Switcher
-            activeItemIndex={checkedCurrencyIndex}
-            onChange={this.onCurrencyChange}>
-            {currencies}
-          </Switcher>
-        </Filter>
+        <Fragment>
+          {currencyHasError &&
+            <NotifyMeassage type="error">
+              К сожалению смена валюты пока не доступна <span role="img" aria-label="sad">😔</span>
+            </NotifyMeassage>}
+          {currencyIsLoading &&
+          <NotifyMeassage type="loading">
+            <span role="img" aria-label="loading">🧘‍♂️</span>
+          </NotifyMeassage>}
+          {currencyIsLoaded &&
+            <Filter title="ВАЛЮТА">
+              <Switcher
+                activeItemIndex={checkedCurrencyIndex}
+                onChange={this.onCurrencyChange}>
+                {currencies}
+              </Switcher>
+            </Filter>}
+        </Fragment>
         <Filter title="Количество пересадок">
           <CheckboxesList
             onItemLinkClick={this.onOnlyOneFilterClick}
@@ -89,11 +104,17 @@ FiltersContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   currencies: PropTypes.array.isRequired,
   checkedCurrencyIndex: PropTypes.number.isRequired,
+  currencyHasError: PropTypes.bool.isRequired,
+  currencyIsLoading: PropTypes.bool.isRequired,
+  currencyIsLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     filters: state.filters,
+    currencyHasError: state.currency.hasError,
+    currencyIsLoading: state.currency.isLoading,
+    currencyIsLoaded: state.currency.isLoaded,
     currencies: state.currency.currencies,
     checkedCurrencyIndex: state.currency.checkedCurrencyIndex,
   };
